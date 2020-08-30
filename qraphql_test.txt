@@ -1,0 +1,93 @@
+===== Mutations =====
+
+Simplest mutation:
+
+mutation {
+    createActor(actorDetails: {name: "Akshay Kumar", dob: "9-Sep-1967"}) 
+    {
+		name 		
+    }
+}
+
+Mutation with Array:
+
+mutation{
+  createSong(songDetails: {
+    title: "A Father's Way",
+    genre: "Soul",
+    actors: [
+      {
+        name: "Will Smith",
+        dob: "25-Sep-1968"
+      }
+    ]
+  }){
+    actors{
+      name
+    }
+  }
+}
+
+Complex Mutation:
+
+mutation{
+   createMovie(movieDetails:{
+      name:"Pursuit of Happiness",
+      releaseYear:2006,
+      runningTime:117,
+      genre:"Drama",
+      actors:[
+         {
+            name:"Will Smith",
+            dob:"25-Sep-1968"
+         },
+         {
+            name:"Jaden Smith",
+            dob:"8-Jul-1998"
+         }
+      ],
+      songs:{
+         title:"A Father's Way",
+         genre:"Soul",
+         actors:[
+            {
+               name:"Will Smith",
+               dob:"25-Sep-1968"
+            }
+         ]
+      }
+   }){
+      name
+   }
+}
+
+
+===== Query =====
+
+query {
+	actors {
+    name
+    dob
+  }
+}
+
+
+query {
+	moviesByActorName (actorName: "Will Smith") {
+    name
+    releaseYear
+	songs {
+		title
+	}
+  }
+}
+
+query {
+	songs {
+		title
+		genre
+		actors {
+			name
+		}
+  }
+}

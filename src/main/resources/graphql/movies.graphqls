@@ -1,0 +1,51 @@
+type Movie {
+	name: String!,
+	releaseYear: Int!,
+	runningTime: Int,
+	genre: String,
+	actors: [Actor],
+	songs: [Song]
+}
+
+input MovieInput {
+	name: String!,
+	releaseYear: Int!,
+	runningTime: Int,
+	genre: String,
+	actors: [ActorInput],
+	songs: [SongInput]
+}
+
+type Song {
+	title: String!,
+	genre: String,
+	actors: [Actor]
+}
+
+input SongInput {
+	title: String!,
+	genre: String,
+	actors: [ActorInput]
+}
+
+type Actor {
+	name: String!,
+	dob: String
+}
+
+input ActorInput {
+	name: String!,
+	dob: String
+}
+
+type Query {
+        actors : [Actor]
+        moviesByActorName(actorName: String!) : [Movie]
+        songs : [Song]
+}
+
+type Mutation {
+        createMovie(movieDetails: MovieInput!) : Movie
+        createSong(songDetails: SongInput!) : Song
+        createActor(actorDetails: ActorInput!) : Actor
+}
